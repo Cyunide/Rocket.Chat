@@ -93,6 +93,27 @@ FlowRouter.route('/home', {
 	},
 });
 
+// Add page test
+FlowRouter.route('/manage-specials', {
+	name: 'manage-specials',
+	action: () => {
+		renderRouteComponent(() => import('./views/cyrus/manageSpecialsPage'), { template: 'main', region: 'center' });
+	},
+	triggersExit: [function() {
+		$('.main-content').addClass('rc-old');
+	}],
+});
+
+FlowRouter.route('/membership-table', {
+	name: 'membership-table',
+	action: () => {
+		renderRouteComponent(() => import('./views/cyrus/membershipsTable'), { template: 'main', region: 'center' });
+	},
+	triggersExit: [function() {
+		$('.main-content').addClass('rc-old');
+	}],
+});
+
 FlowRouter.route('/directory/:tab?', {
 	name: 'directory',
 	action: () => {

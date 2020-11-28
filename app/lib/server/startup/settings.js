@@ -1361,6 +1361,15 @@ settings.addGroup('Layout', function() {
 			multiline: true,
 			public: true,
 		});
+		/*
+		this.add('Cy_Testpage', 'This is a test page.', {
+			type: 'code',
+			code: 'text/html',
+			multiline: true,
+			public: true,
+		});
+		*/
+
 		return this.add('Layout_Sidenav_Footer', '<a href="/home"><img src="assets/logo.png" alt="Home" /></a>', {
 			type: 'code',
 			code: 'text/html',
