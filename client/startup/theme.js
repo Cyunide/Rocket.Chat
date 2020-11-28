@@ -107,4 +107,9 @@ Meteor.startup(() => {
 		added: handleThemeFontChanged,
 		changed: handleThemeFontChanged,
 	});
+
+	if(localStorage.getItem('dark-mode') === 'little joe') {
+		document.body.classList.toggle('dark-mode');
+	}
+	
 });

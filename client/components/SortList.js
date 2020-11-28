@@ -7,6 +7,7 @@ import { useUserPreference } from '../contexts/UserContext';
 import { useMethod } from '../contexts/ServerContext';
 import { useSetting } from '../contexts/SettingsContext';
 
+
 function SortListItem({ text, icon, input }) {
 	return <Flex.Container>
 		<Box is='li'>
@@ -79,9 +80,22 @@ function ViewModeList() {
 	const sidebarViewMode = useUserPreference('sidebarViewMode', 'extended');
 	const sidebarHideAvatar = useUserPreference('sidebarHideAvatar', false);
 
+	const darkModeEnabled = useUserPreference("darkModeEnabled", false);
+
 	const setToExtended = useHandleChange('extended');
 	const setToMedium = useHandleChange('medium');
 	const setToCondensed = useHandleChange('condensed');
+
+	
+	const toggleDarkMode = useCallback(() => {
+		saveUserPreferences({darkModeEnabled: !darkModeEnabled});
+		if(darkModeEnabled) {
+			localStorage.setItem('dark-mode', "hammer");
+		} else {
+			localStorage.setItem('dark-mode', "little joe");
+		}
+		document.body.classList.toggle('dark-mode');
+	}, [saveUserPreferences, darkModeEnabled]);
 
 	const handleChangeSidebarHideAvatar = useCallback(() => saveUserPreferences({ sidebarHideAvatar: !sidebarHideAvatar }), [saveUserPreferences, sidebarHideAvatar]);
 
@@ -94,11 +108,15 @@ function ViewModeList() {
 				<SortListItem icon={'th-list'} text={t('Extended')} input={<RadioButton onChange={setToExtended} name='sidebarViewMode' value='extended' checked={sidebarViewMode === 'extended'} />} />
 				<SortListItem icon={'list'} text={t('Medium')} input={<RadioButton onChange={setToMedium} name='sidebarViewMode' value='medium' checked={sidebarViewMode === 'medium'} />} />
 				<SortListItem icon={'list-alt'} text={t('Condensed')} input={<RadioButton onChange={setToCondensed} name='sidebarViewMode' value='condensed' checked={sidebarViewMode === 'condensed'} />} />
+				<SortListItem icon={'moon'} text="Dark Mode" input={<ToggleSwitch onChange={toggleDarkMode} name='darkModeEnabled' checked={darkModeEnabled} />} />
 				<SortListItem icon={'user-rounded'} text={t('Hide_Avatars')} input={<ToggleSwitch onChange={handleChangeSidebarHideAvatar} name='sidebarHideAvatar' checked={sidebarHideAvatar} />} />
 			</Margins>
 		</ul>
 	</>;
 }
+
+
+
 
 
 function GroupingList() {
