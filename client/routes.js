@@ -114,6 +114,16 @@ FlowRouter.route('/membership-table', {
 	}],
 });
 
+FlowRouter.route('/donations', {
+	name: 'donations',
+	action: () => {
+		renderRouteComponent(() => import('./views/cyrus/donationPage'), { template: 'main', region: 'center' });
+	},
+	triggersExit: [function() {
+		$('.main-content').addClass('rc-old');
+	}],
+});
+
 FlowRouter.route('/directory/:tab?', {
 	name: 'directory',
 	action: () => {

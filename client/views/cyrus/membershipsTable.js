@@ -1,16 +1,15 @@
 import React from 'react';
 
 const divstyle = {
-    borderRadius: "20px"
 
 }
 
 const tablesytle = {
     margin: "auto",
     width: "50%",
-    borderRadius: "20px",
-    mozBorderRadius: "20px",
-    backgroundColor: "DodgerBlue"
+    overflow: "hidden",
+    borderRadius: "8px",
+    color: "white"
 };
 
 const rowOn = {
